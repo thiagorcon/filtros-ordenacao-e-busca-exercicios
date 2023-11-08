@@ -21,6 +21,7 @@ const CardsContainer = styled.div`
 function App() {
   const [pesquisa, setPesquisa] = useState("");
   const [idFilter, setIdFilter] = useState("");
+  const [aparecerTipo,setAparecerTipo] = useState ('');
 
   return (
     <>
@@ -30,6 +31,8 @@ function App() {
         setIdFilter={setIdFilter}
         pesquisa={pesquisa}
         setPesquisa={setPesquisa}
+        aparecerTipo={aparecerTipo}
+        setAparecerTipo={setAparecerTipo}
       />
       <CardsContainer>
         {pokemons.filter((pokemon) => {
@@ -37,6 +40,11 @@ function App() {
         })
           .filter((pokemon) => {
             return pokemon.name.english.toLowerCase().includes(pesquisa.toLowerCase());
+          })
+          .filter((pokemon) =>{ 
+            console.log(pokemon.type[0]);
+            return  aparecerTipo ? pokemon.type[0].includes(aparecerTipo) : pokemon
+            
           })
           .map((pokemon) => {
             return (

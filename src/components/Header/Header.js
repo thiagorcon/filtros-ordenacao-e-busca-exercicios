@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 
+
 const Header = (props) => {
   const pokemontypesArray = [
     "Normal",
@@ -31,6 +32,11 @@ const Header = (props) => {
     props.setIdFilter(e.target.value);
   };
 
+  const aparecerTipo = (event) => {
+    props.setAparecerTipo(event.target.value)
+    console.log(event.target.value);
+  }
+
   return (
     <Container>
         <input
@@ -53,15 +59,20 @@ const Header = (props) => {
       <select
         name="tipo"
         id="tipo"
+        onChange={aparecerTipo}
+        
           >
         <option value="">Selecione um tipo</option>
+        
         {pokemontypesArray.map((type) => {
           return (
             <option key={type} value={type}>
               {type}
             </option>
           );
+          
         })}
+         
       </select>
     </Container>
   );
